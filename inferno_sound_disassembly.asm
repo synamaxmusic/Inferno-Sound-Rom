@@ -1,5 +1,5 @@
-E000: AD 						;;checksum
-E001: 0F       SEI				;SET INTERRUPT MASK
+E000: AD 				;;checksum
+E001: 0F       SEI			;SET INTERRUPT MASK
 E002: 8E 00 7F lds  #$007F		;INITIALIZE STACK POINTER
 E005: 8D 02    bsr  $E009
 E007: 20 FE    bra  $E007
@@ -19,6 +19,7 @@ E022: 0E       cli  			;CLEAR INTERRUPTS
 E023: 86 C6    lda  #$C6
 E025: 97 64    sta  $64
 E027: 39       rts  
+;;
 E028: 7F 00 59 clr  $0059
 E02B: 7F 00 5A clr  $005A
 E02E: CE EE 89 ldx  #$EE89
@@ -648,7 +649,8 @@ E511: DF 13    stx  $13
 E513: 7F 00 1B clr  $001B
 E516: BD E7 64 jsr  $E764
 E519: DF 15    stx  $15
-E51B: 39       rts  
+E51B: 39       rts 
+;;
 E51C: 96 0B    lda  $0B
 E51E: 97 1A    sta  $1A
 E520: DE 13    ldx  $13
@@ -729,6 +731,7 @@ E5A6: 26 DD    bne  $E585
 E5A8: 5D       tstb 
 E5A9: 26 01    bne  $E5AC
 E5AB: 39       rts  
+;;
 E5AC: DF 15    stx  $15
 E5AE: 96 0D    lda  $0D
 E5B0: 27 06    beq  $E5B8
@@ -746,13 +749,18 @@ E5C5: 08       inx
 E5C6: BD E6 00 jsr  $E600
 E5C9: DE 08    ldx  $08
 E5CB: DF 17    stx  $17
-E5CD: 39       rts  
+E5CD: 39       rts 
+*
+*WAVE DECAY ROUTINE/ DECAY AMOUNT IN ACCA(1/16 PER DECAY)
+*
+;;WVDECA
 E5CE: 4D       tsta 
 E5CF: 27 2E    beq  $E5FF
 E5D1: DE 10    ldx  $10
 E5D3: DF 06    stx  $06
 E5D5: CE 00 1C ldx  #$001C
 E5D8: 97 03    sta  $03
+;;WVDLP
 E5DA: DF 08    stx  $08
 E5DC: DE 06    ldx  $06
 E5DE: D6 03    ldb  $03
@@ -766,6 +774,7 @@ E5E8: 08       inx
 E5E9: DF 06    stx  $06
 E5EB: DE 08    ldx  $08
 E5ED: A6 00    lda  (x+$00)
+;;WVDLP1
 E5EF: 10       sba  
 E5F0: 7A 00 02 dec  $0002
 E5F3: 26 FA    bne  $E5EF
@@ -773,8 +782,14 @@ E5F5: A7 00    sta  (x+$00)
 E5F7: 08       inx  
 E5F8: 9C 17    cmpx $17
 E5FA: 26 DE    bne  $E5DA
-E5FC: 7C 00 73 inc  $0073
+E5FC: 7C 00 73 inc  $0073	;;(new instruction)
+;;WVDCX
 E5FF: 39       rts  
+*
+*
+*PARAMETER TRANSFER
+*
+;;TRANS
 E600: 36       psha 
 E601: A6 00    lda  (x+$00)
 E603: DF 06    stx  $06
@@ -788,6 +803,7 @@ E60F: 5A       decb
 E610: 26 EF    bne  $E601
 E612: 32       pula 
 E613: 39       rts  
+;;
 E614: E6 1E    ldb  (x+$1E)
 E616: E6 23    ldb  (x+$23)
 E618: 01       nop  
@@ -876,6 +892,7 @@ E6B4: 26 96    bne  $E64C
 E6B6: C1 07    cmpb #$07
 E6B8: 26 92    bne  $E64C
 E6BA: 39       rts  
+;;
 E6BB: DE 6D    ldx  $6D
 E6BD: 86 FF    lda  #$FF
 E6BF: B7 20 02 sta  $2002
@@ -1020,6 +1037,7 @@ E7AF: 7C 00 5F inc  $005F
 E7B2: 9C 71    cmpx $71
 E7B4: 26 D3    bne  $E789
 E7B6: 39       rts  
+;;
 E7B7: CE 00 20 ldx  #$0020
 E7BA: DF 5C    stx  $5C
 E7BC: CE ED 2A ldx  #$ED2A
@@ -1053,6 +1071,7 @@ E7EF: 7C 00 5D inc  $005D
 E7F2: 8C 00 3F cmpx #$003F
 E7F5: 26 CA    bne  $E7C1
 E7F7: 39       rts  
+;;
 E7F8: 36       psha 
 E7F9: DE 6D    ldx  $6D
 E7FB: A6 00    lda  (x+$00)
@@ -1112,6 +1131,7 @@ E863: 08       inx
 E864: DF 6B    stx  $6B
 E866: 32       pula 
 E867: 39       rts  
+;;
 E868: 91 50    cmpa $50
 E86A: 22 03    bhi  $E86F
 E86C: 7F 00 52 clr  $0052
@@ -1168,6 +1188,7 @@ E8CF: A6 04    lda  (x+$04)
 E8D1: 97 48    sta  $48
 E8D3: 97 49    sta  $49
 E8D5: 39       rts  
+;;
 E8D6: DE 6D    ldx  $6D
 E8D8: A6 0B    lda  (x+$0B)
 E8DA: 27 0A    beq  $E8E6
@@ -1305,6 +1326,7 @@ E9D3: B7 20 03 sta  $2003
 E9D6: 86 37    lda  #$37
 E9D8: B7 20 01 sta  $2001
 E9DB: 20 FE    bra  $E9DB
+;;NMI
 E9DD: 0F       sei  
 E9DE: 8E 00 7F lds  #$007F
 E9E1: 4F       clra 
