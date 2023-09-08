@@ -1540,7 +1540,7 @@ EB6B: 89 00    adca #$00
 EB6D: CE F9 B7 ldx  #$F9B7
 EB70: BD E7 73 jsr  $E773
 ;;
-EB73: 8C FA EF cmpx #$FAEF
+EB73: 8C FA EF cmpx #$FAEF    ;;(check for GWAVE WAVEFORM?!)
 EB76: 27 87    beq  $EAFF
 EB78: A6 00    lda  (x+$00)
 EB7A: 97 6B    sta  $6B
@@ -4261,8 +4261,9 @@ F9B5: 0D       sec
 F9B6: 00       illegal
 ;; Another pluck table
 F9B7: EE 28    ldx  (x+$28)
-F9B9: F4 60 ED andb $60ED
-F9BC: EE F6    ldx  (x+$F6)
+F9B9: F4 60 
+F9BB: ED EE                    ;;(this one gets loaded)
+F9BD: F6
 F9BE: 4B       illegal
 F9BF: ED       illegal
 F9C0: EE F7    ldx  (x+$F7)
