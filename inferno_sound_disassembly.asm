@@ -1321,6 +1321,7 @@ E9C9: 96 02    lda  $02
 E9CB: 81 AF    cmpa #$AF
 E9CD: 22 02    bhi  $E9D1
 E9CF: 8D 28    bsr  $E9F9
+;;
 E9D1: 86 3C    lda  #$3C
 E9D3: B7 20 03 sta  $2003
 E9D6: 86 37    lda  #$37
@@ -1349,12 +1350,14 @@ E9FE: C6 3F    ldb  #$3F
 EA00: F7 20 01 stb  $2001
 EA03: 4D       tsta 
 EA04: 27 F2    beq  $E9F8	;;(if not valid sound ID then RTS outta there)
+;;
 EA06: D6 76    ldb  $76
 EA08: CA 80    orb  #$80
 EA0A: D7 76    stb  $76
 EA0C: D6 75    ldb  $75
 EA0E: 81 A0    cmpa #$A0
 EA10: 26 0B    bne  $EA1D
+;;
 EA12: 7F 00 74 clr  $0074
 EA15: 7F 00 73 clr  $0073
 EA18: 7F 00 76 clr  $0076
@@ -1389,6 +1392,7 @@ EA4C: 20 26    bra  $EA74
 ;;
 EA4E: C1 A4    cmpb #$A4
 EA50: 26 1D    bne  $EA6F
+;;
 EA52: 97 75    sta  $75
 EA54: D6 74    ldb  $74
 EA56: DB 73    addb $73
@@ -1408,10 +1412,10 @@ EA6D: 20 05    bra  $EA74
 EA6F: 7F 00 73 clr  $0073
 EA72: 97 75    sta  $75
 EA74: CE EB AC ldx  #$EBAC
-EA77: 4A       deca 
-EA78: 16       tab  
-EA79: 4F       clra 
-EA7A: 58       aslb 
+EA77: 4A       deca           ;;(decrease sound ID)
+EA78: 16       tab            ;;(copy it to B)
+EA79: 4F       clra           ;;(clear A)
+EA7A: 58       aslb           ;;(turn 40 into 80)
 EA7B: 89 00    adca #$00
 EA7D: BD E7 73 jsr  $E773
 ;;
@@ -1551,10 +1555,15 @@ EB8A: BD E8 80 jsr  $E880
 EB8D: 7F 00 66 clr  $0066
 EB90: 7F 00 65 clr  $0065
 EB93: 7E E2 10 jmp  $E210
+;;
+;;
 EB96: EA 90    orb  (x+$90)
 EB98: EA 96    orb  (x+$96)
 EB9A: EB 02    addb (x+$02)
+;;
+;; Pluck jump address
 EB9C: EB 65    addb (x+$65)
+;;
 EB9E: EA A1    orb  (x+$A1)
 EBA0: EA EB    orb  (x+$EB)
 EBA2: EA F0    orb  (x+$F0)
@@ -1690,6 +1699,8 @@ EC28: 02       illegal
 EC29: 16       tab  
 EC2A: 03       illegal
 EC2B: 00       illegal
+;;
+;; table related to Pluck sound
 EC2C: 03       illegal
 EC2D: 01       nop  
 EC2E: 03       illegal
@@ -4248,6 +4259,7 @@ F9B3: 30       tsx
 F9B4: 00       illegal
 F9B5: 0D       sec  
 F9B6: 00       illegal
+;; Another pluck table
 F9B7: EE 28    ldx  (x+$28)
 F9B9: F4 60 ED andb $60ED
 F9BC: EE F6    ldx  (x+$F6)
