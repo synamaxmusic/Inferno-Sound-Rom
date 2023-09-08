@@ -1342,13 +1342,13 @@ E9F2: 86 01    lda  #$01
 E9F4: 8D 03    bsr  $E9F9
 E9F6: 20 E5    bra  $E9DD
 E9F8: 39       rts  
-;;
+;; Pluck drone is called to here
 E9F9: C6 3C    ldb  #$3C
 E9FB: F7 20 01 stb  $2001
 E9FE: C6 3F    ldb  #$3F
 EA00: F7 20 01 stb  $2001
 EA03: 4D       tsta 
-EA04: 27 F2    beq  $E9F8
+EA04: 27 F2    beq  $E9F8	;;(if not valid sound ID then RTS outta there)
 EA06: D6 76    ldb  $76
 EA08: CA 80    orb  #$80
 EA0A: D7 76    stb  $76
