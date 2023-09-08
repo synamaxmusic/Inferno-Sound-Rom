@@ -642,15 +642,15 @@ E503: 97 0F    sta  $0F
 E505: A6 05    lda  (x+$05)
 E507: 16       tab  
 E508: A6 06    lda  (x+$06)
-E50A: CE FC 06 ldx  #$FC06
-E50D: BD E7 64 jsr  $E764
+E50A: CE FC 06 ldx  #$FC06		;;(GFRTAB)
+E50D: BD E7 64 jsr  $E764     		;;(ADDX)
 E510: 17       tba  
 E511: DF 13    stx  $13
 E513: 7F 00 1B clr  $001B
 E516: BD E7 64 jsr  $E764
 E519: DF 15    stx  $15
 E51B: 39       rts 
-;;
+;;GWAVE (NEW STUFF)
 E51C: 96 0B    lda  $0B
 E51E: 97 1A    sta  $1A
 E520: DE 13    ldx  $13
@@ -662,10 +662,11 @@ E52A: 2B 10    bmi  $E53C
 E52C: DF 69    stx  $69
 E52E: 9B 6A    adda $6A
 E530: 97 6A    sta  $6A
-E532: 5F       clrb 
+E532: 5F       clrb 	
 E533: D9 69    adcb $69
 E535: D7 69    stb  $69
 E537: 7F 00 76 clr  $0076
+;;GPLAY
 E53A: DE 69    ldx  $69
 E53C: A6 00    lda  (x+$00)
 E53E: 9B 1B    adda $1B
@@ -681,6 +682,7 @@ E550: 4A       deca
 E551: 26 FD    bne  $E550
 E553: A6 00    lda  (x+$00)
 E555: B7 20 02 sta  $2002
+;;GPR1
 E558: 08       inx  
 E559: 9C 17    cmpx $17
 E55B: 26 F1    bne  $E54E
