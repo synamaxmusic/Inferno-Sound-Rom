@@ -4433,81 +4433,31 @@ FAEE: AA
 ;;GWVTAB 
 ;; GS28 (Used in Sinistar)
 FAEF: 1C   
-FAF0: 80 40    suba #$40
-FAF2: 29 1B    bvs  $FB0F
-FAF4: 10       sba  
-FAF5: 09       dex  
-FAF6: 06       tap  
-FAF7: 04       illegal
-FAF8: 07       tpa  
-FAF9: 0C       clc  
-FAFA: 12       illegal
-FAFB: 1E       illegal
-FAFC: 30       tsx  
-FAFD: 49       rola 
-FAFE: A4 C9    anda (x+$C9)
-FB00: DF EB    stx  $EB
-FB02: F6 FB FF ldb  $FBFF
-FB05: FF FB F5 stx  $FBF5
-FB08: EA DD    orb  (x+$DD)
-FB0A: C7 9B    stb  #$9B
-;;
-FB0C: 10       sba  
-FB0D: 00       illegal
-FB0E: F4 00 E8 andb $00E8
-FB11: 00       illegal
-FB12: DC       illegal
-FB13: 00       illegal
-FB14: E2 00    sbcb (x+$00)
-FB16: DC       illegal
-FB17: 00       illegal
-FB18: E8 00    eorb (x+$00)
-FB1A: F4 00 00 andb $0000
-;;
-FB1D: 20 4C    bra  $FB6B
-FB1F: 45       illegal
-FB20: 41       illegal
-FB21: 41       illegal
-FB22: 43       coma 
-FB23: 47       asra 
-FB24: 77 87 90 asr  $8790
-FB27: 97 A1    sta  $A1
-FB29: A7 AE    sta  (x+$AE)
-FB2B: B5 B8 BC bita $B8BC
-FB2E: BE BF C1 lds  $BFC1
-FB31: C2 C2    sbcb #$C2
-FB33: C2 C1    sbcb #$C1
-FB35: BF BE BB sts  $BEBB
-FB38: B6 B1 AC lda  $B1AC
-FB3B: A4 9E    anda (x+$9E)
-FB3D: 93       illegal
-;;
-FB3E: 10       sba  
-FB3F: 3C       illegal
-FB40: 10       sba  
-FB41: 17       tba  
-FB42: 3F       swi  
-FB43: 70 92 95 neg  $9295
-FB46: 7F 7C 7E clr  $7C7E
-FB49: 8A BE    ora  #$BE
-FB4B: E7 EF    stb  (x+$EF)
-FB4D: C5 7F    bitb #$7F
+FAF0: 80 40 29 1B 10 09 06
+FAF7: 04 07 0C 12 1E 30 49
+FAFE: A4 C9 DF EB F6 FB FF
+FB05: FF FB F5 EA DD C7 9B
+;; MW1
+FB0C: 10
+FB0D: 00 F4 00 E8 00 DC 00 E2
+FB15: 00 DC 00 E8 00 F4 00 00
+;; NEW WAVEFORM #2
+FB1D: 20
+FB1E: 4C 45 41 41 43 47 77 87
+FB26: 90 97 A1 A7 AE B5 B8 BC
+FB2E: BE BF C1 C2 C2 C2 C1 BF
+FB36: BE BB B6 B1 AC A4 9E 93
+;; NEW WAVEFORM #3 (REVERSED GS12)
+FB3E: 10
+FB3F: 3C 10 17 3F 70 92 95 7F
+FB47: 7C 7E 8A BE E7 EF C5 7F
 ;;GSQ2
-FB4F: 08       inx  
-FB50: FF FF FF stx  $FFFF
-FB53: FF 00 00 stx  $0000
-FB56: 00       illegal
-FB57: 00       illegal
+FB4F: 08
+FB50: FF FF FF FF 00 00 00 00
 ;;GSQ22
-FB58: 10       sba  
-FB59: FF FF FF stx  $FFFF
-FB5C: FF 00 00 stx  $0000
-FB5F: 00       illegal
-FB60: 00       illegal
-FB61: FF FF FF stx  $FFFF
-FB64: FF 00 00 stx  $0000
-FB67: 00       illegal
-FB68: 00       illegal
+FB58: 10
+FB59: FF FF FF FF 00 00 00 00
+FB61: FF FF FF FF 00 00 00 00
 ;;GS72
 FB69: 48       asla 
 FB6A: 8A 95    ora  #$95
@@ -4560,17 +4510,17 @@ FBAF: 6A 75    dec  (x+$75)
 FBB1: 7F
 ;;SVTAB 
 FBB2: 73 20 00 00 00 04 00
-FBB9: A3 11 00 01 01 10 04       illegal
-FBC0: FF 12 14 01 01 04 14       illegal
-FBC7: 3D 53 01 01 01 02 18       illegal
-FBCE: 01 14 00 00 00 08 1A       illegal
+FBB9: A3 11 00 01 01 10 04       
+FBC0: FF 12 14 01 01 04 14       ;;(Angel/Mystic Marathon Time Running out)
+FBC7: 3D 53 01 01 01 02 18       ;;(MYSTIC MARATHON INSERT COIN)
+FBCE: 01 14 00 00 00 08 1A       
 FBD5: 81 25 00 00 00 16 22
-FBDC: 01 16 01 01 01 01 38       illegal
+FBDC: 01 16 01 01 01 01 38      
 FBE3: FE 10 00 00 00 20 4C
-FBEA: F1 10 00 00 00 4D 4C       inca 
-FBF1: F1 15 00 00 00 4D 4C       inca 
-FBF8: F1 16 00 00 00 4D 4C       inca 
-FBFF: FE 10 00 00 00 20 4C    bra  $FC52
+FBEA: F1 10 00 00 00 4D 4C      
+FBF1: F1 15 00 00 00 4D 4C       
+FBF8: F1 16 00 00 00 4D 4C     
+FBFF: FE 10 00 00 00 20 4C    
 ;;GFRTAB
 FC06: 08       inx  
 FC07: 10       sba  
